@@ -1,7 +1,6 @@
-function areInputsEqual(
-  newInputs: readonly unknown[],
-  lastInputs: readonly unknown[],
-): boolean {
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function areInputsEqual(newInputs, lastInputs) {
   // Using for loop for speed. It generally performs better than array.every
   // https://github.com/alexreardon/memoize-one/pull/59
   for (let i = 0; i < newInputs.length; i++) {
@@ -12,11 +11,9 @@ function areInputsEqual(
   }
   return true;
 }
-
-let lastArgs: unknown[] = [];
+let lastArgs = [];
 let lastResult = 0;
-
-export default function mergeExtraData(...newArgs: unknown[]): number {
+function mergeExtraData(...newArgs) {
   if (areInputsEqual(newArgs, lastArgs)) {
     return lastResult;
   }
@@ -25,3 +22,4 @@ export default function mergeExtraData(...newArgs: unknown[]): number {
   lastArgs = newArgs;
   return lastResult;
 }
+exports.default = mergeExtraData;
